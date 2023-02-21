@@ -4,8 +4,11 @@
 
 const TodoController = () => {
 
-    const Todo = () => {                                // facade
-        const textAttr = Observable("text");            // we currently don't expose it as we don't use it elsewhere
+    const Todo = () => {                                // facade --> facade pattern
+        // "Facade is a structural design pattern that provides a simplified
+        // interface to a library, a framework, or any other complex set
+        // of classes."
+        const textAttr = Observable("text");      // we currently don't expose it as we don't use it elsewhere
         const doneAttr = Observable(false);
         return {
             getDone:       doneAttr.getValue,
