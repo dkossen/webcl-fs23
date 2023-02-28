@@ -117,7 +117,9 @@ const TodoItemsView = (todoController, rootElement) => {
 const TodoTotalView = (todoController, numberOfTasksElement) => {
 
     const render = () =>
-        numberOfTasksElement.innerText = "" + todoController.numberOfTodos();
+        numberOfTasksElement.textContent = "" + todoController.numberOfTodos();
+    // textContent: raw text
+    // innerText: text nach CSS styling
 
     // binding
 
