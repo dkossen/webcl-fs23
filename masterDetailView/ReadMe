@@ -1,0 +1,23 @@
+// Idee
+2 Views:
+1) MasterView von To-dos (Beschreibung, Status (erledigt/offen), Kategorie) --> Wert-Anzeige
+2) DetailView für das bearbeiten von To-dos (Werte bearbeiten, Speichern, Reset) --> Wert-Anzeige und -Mutation
+
+In der DetailView wird jeweils das in der MasterView selektierte To-do angezeigt.
+Wenn Werte in der DetailView geändert werden, werden der Save- und Reset-Button enabled (standardmässig also disabled).
+Ist das To-Do in einem 'dirty' State (nicht gespeichert), ist das auch visuell sichtbar.
+Alle Änderungen in der DetailView sind direkt sichtbar in der MasterView.
+Werden die Änderungen verworfen, werden die Felder in beiden Views zurück auf den zuletzt gespeicherten Wert gesetzt.
+
+
+//Konzeptionelle Umsetzung
+Die Master-View ist für den User immutable, soll aber einen Listener auf die Detail-View haben.
+
+
+
+//Potentielle Probleme
+ --> Wie hält man alle Daten konsistent?
+        Daten müssen stets aktuell sein und dürfen sich nicht
+        ungewollt beeinflussen.
+
+ --> Wie kapselt man die Views voneinander ab, dass sie unabhängig sind?

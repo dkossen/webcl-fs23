@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todos</title>
+    <link rel="stylesheet" href="../todo.css">
+</head>
+<body>
+
+<main>
+    <h1>Todo List</h1>
+    <div class="holder" id="master">
+        <h2>Master</h2>
+        <button id="plus" autofocus> + </button>
+        <button id="fortune"> fortune! </button>
+
+        <!--        <div class="table" id="todoMasterContainer"></div>-->
+        <div>
+            <table id="todoMasterContainer">
+                <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Time</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div>Tasks: <span id="numberOfTasks">0</span></div>
+        <div>Open:  <span id="openTasks"    >0</span></div>
+    </div>
+    <div class="holder" id="detail">
+        <h2>Detail</h2>
+        <div class="table" id="todoDetailContainer">
+            <label>Name of todo</label>
+            <input id="description" type="text">
+
+            <label>Estimated duration</label>
+            <input id="duration" type="text">
+
+            <label>Location</label>
+            <input id="location" type="text">
+
+            <div>
+                <button id="save">save</button>
+                <button>delete</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="todoStarter.js" type="module"></script>
+
+</body>
+
+</html>

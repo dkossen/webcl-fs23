@@ -1,0 +1,80 @@
+body {
+    margin-top:     2em;
+    font-family:    "Helvetica Neue", sans-serif;
+}
+main {
+    max-width:  40em;
+    margin:     auto;
+    padding:    2em;
+    box-shadow: 0 4px  8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+h1 {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    text-align: center;
+}
+.holder {
+    margin: 0 3em 0 3em;
+}
+
+.holder#detail {
+    margin: 4em 3em 0 3em;
+}
+
+input[type=text] {
+    font-family:    "Comic Sans MS", cursive, sans-serif;
+    font-size:      1.1em;
+    color:          darkblue;
+    border-width:   1px;
+}
+input[type=text]:focus {
+    border-color:   orange;
+    outline:        transparent none 0;
+}
+.table {
+    margin: 1em 0;
+    display: grid;
+    grid-template-columns: max-content auto;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.detail {
+    display: grid;
+    grid-template-columns: max-content auto;
+    row-gap: 0.8em;
+}
+
+.detail label {
+    margin-right: 1em;
+    align-self: self-end;
+}
+
+#plus, #fortune {
+    position: relative;
+    top: -1em;
+}
+.delete {
+    background-color: transparent;
+    border: none;
+    color: red;
+    font-size: 1.3em;
+}
+input.invalid {
+    color: red;
+}
+
+input.dirty {
+    background-color: yellow;
+}
+
+#todoDetailContainer input {
+    margin: 0 0.5em;
+}
