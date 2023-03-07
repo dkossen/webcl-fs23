@@ -13,7 +13,7 @@ document.getElementById('fortune').onclick = _ => todoController.addFortuneTodo(
 TodoMasterView(todoController, document.getElementById('todoMasterContainer'));
 TodoTotalView(todoController, document.getElementById('numberOfTasks'));
 TodoOpenView (todoController, document.getElementById('openTasks'));
-TodoDetailView(todoController, document.getElementById('todoDetailContainer'));
+TodoDetailView(todoController);
 
 // init the model
 

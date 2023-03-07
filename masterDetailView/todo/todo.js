@@ -7,14 +7,10 @@ export { TodoController, TodoMasterView, TodoTotalView, TodoOpenView, TodoDetail
 
 const TodoController = () => {
 
-    let idCounter = 1;
-
     const Todo = () => {                               // facade
         const textAttr = Attribute("text");
         const doneAttr = Attribute(false);
         const saveAttr = Attribute(false);
-        const todoId = Attribute(idCounter);
-        idCounter++;
 
         textAttr.setValidator( input => input.length >= 3   );
 
@@ -26,7 +22,6 @@ const TodoController = () => {
             setText:            textAttr.setConvertedValue,
             onTextChanged:      textAttr.valueObs.onChange,
             onTextValidChanged: textAttr.validObs.onChange,
-            onTodoSave:         saveAttr.valueObs.setValue,
             onSaved:            textAttr.valueObs.onChange
         }
     };
@@ -66,7 +61,6 @@ const TodoController = () => {
         onTodoAdd:          todoModel.onAdd,
         onTodoRemove:       todoModel.onDel,
         removeTodoRemoveListener: todoModel.removeDeleteListener, // only for the test case, not used below
-        updateViews: () => console.log("value changed")
     }
 };
 
@@ -98,19 +92,14 @@ const TodoMasterView = (todoController, rootElement) => {
 
     }
 
-    // binding
-
     todoController.onTodoAdd(render);
 
-    // we do not expose anything as the view is totally passive.
 };
 
 const TodoTotalView = (todoController, numberOfTasksElement) => {
 
     const render = () =>
         numberOfTasksElement.textContent = "" + todoController.numberOfTodos();
-
-    // binding
 
     todoController.onTodoAdd(render);
     todoController.onTodoRemove(render);
@@ -121,8 +110,6 @@ const TodoOpenView = (todoController, numberOfOpenTasksElement) => {
     const render = () =>
         numberOfOpenTasksElement.innerText = "" + todoController.numberOfopenTasks();
 
-    // binding
-
     todoController.onTodoAdd(todo => {
         render();
         todo.onDoneChanged(render);
@@ -130,15 +117,15 @@ const TodoOpenView = (todoController, numberOfOpenTasksElement) => {
     todoController.onTodoRemove(render);
 };
 
-const TodoDetailView = (todoController, rootElement) => {
+const TodoDetailView = (todoController) => {
 
     const render = todo => {
 
         const description = document.getElementById("description");
         const saveButton = document.getElementById("save");
+        const resetButton = document.getElementById("reset");
 
         description.value = todo.getText();
-        description.setAttribute("onchange", "descriptionValue");
 
         description.onchange = function() {
             if(todo.getText() !== description.value){
@@ -148,15 +135,17 @@ const TodoDetailView = (todoController, rootElement) => {
             }
         }
 
-        saveButton.onclick      = _ => {
-            todo.onTodoSave(true);
+        saveButton.onclick = _ => {
             todo.setText(description.value);
             description.classList.remove("dirty");
         }
 
-    };
+        resetButton.onclick = _ => {
+            description.value = todo.getText();
+            description.classList.remove("dirty");
+        }
 
-    // binding
+    };
 
     todoController.onTodoAdd(render);
 }
