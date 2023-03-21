@@ -20,6 +20,18 @@
 
 			<script>
 
+				const calculateAverage = gradeArray => {
+					let value = gradeArray.reduce((acc, cur) => acc + cur, 0) / gradeArray.length;
+					value = Math.floor(value * 10) / 10; // round to 1 decimal
+					return value;
+				};
+
+				const updateAll = () => {
+					const grades = [...document.querySelectorAll("input[id$='-grade']")].map(it => Number(it.value));
+					const newAverage = calculateAverage(grades);
+					document.getElementById("output-grade-average").textContent = String(newAverage);
+				}
+
 				const writeModule = (moduleId, moduleName, moduleGrade) => {
 					document.writeln(`
 						<div>
@@ -28,7 +40,8 @@
 						</div>
 						<div>
 							<label for="${moduleId}-grade"></label>
-							<input id="${moduleId}-grade" type="number" value="${moduleGrade}" step="0.1" min="1.0" max="6.0" required>
+							<input id="${moduleId}-grade" type="number" value="${moduleGrade}"
+							step="0.1" min="1.0" max="6.0" required oninput="updateAll();">
 						</div>
 					`);
 				}
@@ -40,10 +53,7 @@
 			</script>
 
 			<script>
-				const grades = [6.0, 5.5, 5.0];
-				let value = grades.reduce((acc, cur) => acc + cur, 0) / grades.length;
-				value = Math.floor(value * 10) / 10; // round to 1 decimal
-				const gradeAverage = String(value);
+				const gradeAverage = String(calculateAverage([6.0, 5.5, 5.0]));
 				document.writeln(`
 					<div>Durchschnitt</div>
 					<div><output id="output-grade-average">${gradeAverage}</output></div>
