@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Grades Calculator</title>
+		<style>
+			#grades {
+				display: grid;
+				grid-template-columns: max-content max-content;
+				gap: 0.5em 2em;
+			}
+			:invalid {
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+
+		<datalist id="numberlist">
+			<option>1.0</option>
+			<option>1.1</option>
+		</datalist>
+
+		<div id="grades">
+
+			<div>
+				<label for="modul-1"></label>
+				<input id="modul-1" type="text" value="Web Clients">
+			</div>
+
+			<div>
+				<label for="modul-2"></label>
+				<input id="modul-2" type="text" list="numberlist" step="0.1" min="1.0" max="6.0" required>
+			</div>
+
+			<div>Web Programming</div>
+			<div>5.5</div>
+
+			<div>Durchschnitt</div>
+			<div>5.75</div>
+
+		</div>
+
+	</body>
+</html>
