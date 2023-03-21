@@ -39,8 +39,16 @@
 
 			</script>
 
-			<div>Durchschnitt</div>
-			<div>5.75</div>
+			<script>
+				const grades = [6.0, 5.5, 5.0];
+				let value = grades.reduce((acc, cur) => acc + cur, 0) / grades.length;
+				value = Math.floor(value * 10) / 10; // round to 1 decimal
+				const gradeAverage = String(value);
+				document.writeln(`
+					<div>Durchschnitt</div>
+					<div><output id="output-grade-average">${gradeAverage}</output></div>
+				`);
+			</script>
 
 		</div>
 
