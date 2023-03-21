@@ -18,18 +18,26 @@
 
 		<div class="two-column-layout">
 
-			<div>
-				<label for="modul-1-name"></label>
-				<input id="modul-1-name" type="text" value="Web Clients">
-			</div>
+			<script>
 
-			<div>
-				<label for="modul-1-grade"></label>
-				<input id="modul-1-grade" type="number" step="0.1" min="1.0" max="6.0" required>
-			</div>
+				const writeModule = (moduleId, moduleName, moduleGrade) => {
+					document.writeln(`
+						<div>
+							<label for="${moduleId}-name"></label>
+							<input id="${moduleId}-name" type="text" value="${moduleName}">
+						</div>
+						<div>
+							<label for="${moduleId}-grade"></label>
+							<input id="${moduleId}-grade" type="number" value="${moduleGrade}" step="0.1" min="1.0" max="6.0" required>
+						</div>
+					`);
+				}
 
-			<div>Web Programming</div>
-			<div>5.5</div>
+				writeModule("modul-1", "Web Clients", "6.0");
+				writeModule("modul-2", "Web Programming", "5.5");
+				writeModule("modul-3", "Web Engineering", "5.0");
+
+			</script>
 
 			<div>Durchschnitt</div>
 			<div>5.75</div>
