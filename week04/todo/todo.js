@@ -1,5 +1,5 @@
 import { ObservableList }          from "../kolibri/observable.js";
-import { Attribute, VALID, VALUE } from "../kolibri/presentationModel.js";
+import {Attribute, EDITABLE, VALID, VALUE} from '../kolibri/presentationModel.js';
 import { Scheduler }               from "../kolibri/dataflow/dataflow.js";
 import { todoItemProjector }       from "./todoProjector.js";
 import { fortuneService }          from "./fortuneService.js";
@@ -16,7 +16,7 @@ const TodoController = () => {
         textAttr.setValidator( input => input.length >= 3   );
 
         // business rules / constraints (the text is only editable if not done)
-        doneAttr.getObs(VALUE).onChange( isDone => textAttr.getObs("EDITABLE",!isDone).setValue(!isDone));
+        doneAttr.getObs(VALUE).onChange( isDone => textAttr.getObs(EDITABLE,!isDone).setValue(!isDone));
 
         return {
             getDone:            doneAttr.getObs(VALUE).getValue,
