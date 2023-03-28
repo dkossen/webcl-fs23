@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grade Calculator</title>
+  <style>
+    .two-column-layout {
+      display:                grid;
+      grid-template-columns:  max-content max-content;
+      gap:                    0.5em 2em;
+    }
+    :invalid {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div class="two-column-layout" >
+
+  <script>
+
+    const calculateAverage = gradeArray => {
+      let value    = gradeArray.reduce((acc, cur) => acc + cur, 0) / gradeArray.length;
+      value        = Math.floor(value * 10) / 10; // round to one decimal
+      return value;
+    };
+
+    const updateAll = () => {
+      const grades = [...document.querySelectorAll("input[id$='-grade']")].map(it => Number(it.value));
+      const newAverage = calculateAverage(grades);
+      document.getElementById("outputGradeAverage").textContent = String(newAverage);
+
+    };
+
+    const writeModuleInfo = (moduleId, moduleName, moduleGrade) => {
+      document.writeln(`
+    <div>
+      <label for="${moduleId}-name"></label>
+      <input  id="${moduleId}-name" type="text" value="${moduleName}">
+    </div>
+    <div>
+      <label for="${moduleId}-grade"></label>
+      <input  id="${moduleId}-grade" type="number" value="${moduleGrade}"
+            step="0.1" min="1.0" max="6.0" required oninput="updateAll();">
+    </div>
+      `);
+    } ;
+
+    writeModuleInfo("modul-1", "Web Clients",     "6.0");
+    writeModuleInfo("modul-2", "Web Programming", "5.5");
+    writeModuleInfo("modul-3", "Web Engineering", "5.0");
+
+  </script>
+
+  <script>
+
+    const gradeAverage = String(calculateAverage([6.0, 5.5, 5.1]));
+    document.writeln(`
+  <div>Durchschnitt</div>
+  <div><output id="outputGradeAverage">${gradeAverage}</output></div>
+    `);
+
+  </script>
+
+
+</div>
+
+</body>
+</html>
