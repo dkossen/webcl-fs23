@@ -2,11 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Try Layer</title>
+    <title>Try :is, :has, specificity</title>
     <style>
         body {
             margin: 1em;
         }
+
+				.box1 p, box2 p {
+					color: orange;
+				}
+
+        /* do the above with "is",
+					 include formally invalid selectors (.0-such-class)
+					 include empty subselects,
+					 move around to validate specificity (max in parens)
+					 --> invalid syntax of a sub-select gets ignored (other sub-select still get rendered correctly)
+					 --> the maximum of the specificity is the specificity of the whole select
+				*/
 
         main:is(main) {
 	        /* has specificity of (1, 0, 1), which would overwrite the original 'main' class */
@@ -16,17 +28,21 @@
           color: red;
         }
 
-        /* do the above with "is",
-           include formally invalid selectors (.0-such-class)
-           include empty subselects,
-           move around to validate specificity (max in parens)
-           --> invalid syntax of a sub-select gets ignored (other sub-select still get rendered correctly)
-           --> the maximum of the specificity is the specificity of the whole select
-        */
 
         /* style div that has at least two children */
         /* move around for specificity */
         /* try the same where no specificity */
+
+        /* styles 2nd child of all children of all div */
+        div *:nth-child(2) {
+	        color: green;
+        }
+
+        /* styles all divs that have two children */
+        /* :has doesn't change the specificity */
+        div:has(:nth-child(2)) {
+	        outline: 3px solid orange;
+        }
 
     </style>
 </head>
