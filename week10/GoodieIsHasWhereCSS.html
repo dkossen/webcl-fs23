@@ -16,6 +16,8 @@
            include formally invalid selectors (.0-such-class)
            include empty subselects,
            move around to validate specificity (max in parens)
+           --> invalid syntax of a sub-select gets ignored (other sub-select still get rendered correctly)
+           --> the maximum of the specificity is the specificity of the whole select
         */
 
         /* style div that has at least two children */
