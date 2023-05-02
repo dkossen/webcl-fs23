@@ -44,6 +44,16 @@
 	        outline: 3px solid orange;
         }
 
+
+        div:where(:nth-child(2)) {
+	        outline: 3px solid #c420c4;
+        }
+
+        /* where ignores the specificity */
+        :where(main) {
+	        /* specificity = (0, 0, 0) */
+        }
+
     </style>
 </head>
 <body>
