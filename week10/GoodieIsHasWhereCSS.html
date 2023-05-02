@@ -8,6 +8,10 @@
             margin: 1em;
         }
 
+        main:is(#no-such-id) {
+	        /* has specificity of (1, 0, 1), which would overwrite the original 'main' class */
+        }
+
         :is(.box1, .box2) p {
           color: red;
         }
